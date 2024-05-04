@@ -1,0 +1,12 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "description": "This is only for the practice purpose to learn more about redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
