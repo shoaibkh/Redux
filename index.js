@@ -1,6 +1,3 @@
-# Redux
-This is only for the practice purpose to learn more about redux 
-
 // import createStore which is a function from redux module to create a store object
 import { createStore } from 'redux'
 
