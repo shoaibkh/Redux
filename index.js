@@ -1,8 +1,11 @@
 // import createStore which is a function from redux module to create a store object
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import pkg from 'redux-logger';
+const {createLogger} = pkg;
 
-// create a store object which accepts reducer function
-const store = createStore(reducer)
+
+// create a store object which accepts reducer function and apply middleware
+const store = createStore(reducer, applyMiddleware(createLogger()))
 
 /**
  * The reducer function that will be passed to the store during its
