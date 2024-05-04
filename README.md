@@ -1,11 +1,11 @@
 # Redux
 This is only for the practice purpose to learn more about redux 
 
-// import createStore which is a function from redux module to create a store object
-import { createStore } from 'redux'
+import createStore which is a function from redux module to create a store object \
+```import { createStore } from 'redux' ```
 
-// create a store object which accepts reducer function
-const store = createStore(reducer)
+create a store object which accepts reducer function \
+```const store = createStore(reducer)``` 
 
 /**
  * The reducer function that will be passed to the store during its
@@ -18,9 +18,11 @@ const store = createStore(reducer)
  * the initial state, which is {count: 0}.
  * @param {Object} action The action that was dispatched to the store.
  *
- * @return {Object} The updated state of the application.
- */
-function reducer(state = { count: 0 }, action) {
+ * @return {Object} The updated state of the application. \
+
+```function reducer(state = { count: 0 }, action)``` 
+
+```{
     /**
      * The switch statement will inspect the type property of the action
      * and will execute the corresponding block of code. If no block is
