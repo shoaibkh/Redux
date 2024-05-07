@@ -1,64 +1,42 @@
-# Redux
-This is only for the practice purpose to learn more about redux 
+```import { createSlice, configureStore } from '@reduxjs/toolkit' ```
+```import pkg from 'redux-logger';```
+```const {createLogger} = pkg;```
 
-import createStore which is a function from redux module to create a store object \
-```import { createStore } from 'redux' ```
-
-create a store object which accepts reducer function \
-```const store = createStore(reducer)``` 
-
-/**
- * The reducer function that will be passed to the store during its
- * creation. The reducer function will be called every time an action
- * is dispatched to the store. It will receive the current state and the
- * action as arguments, and will be expected to return the new state.
- *
- * @param {Object} state The current state of the application. If this is
- * the first time the reducer is being called, the state will be set to
- * the initial state, which is {count: 0}.
- * @param {Object} action The action that was dispatched to the store.
- *
- * @return {Object} The updated state of the application. \
-
-```function reducer(state = { count: 0 }, action)``` 
-
-```{
-    /**
-     * The switch statement will inspect the type property of the action
-     * and will execute the corresponding block of code. If no block is
-     * found, it will execute the default block.
-     */
-    switch (action.type) {
-        /**
-         * If the action has a type of 'INCREMENT', then increment the
-         * count property of the state by 1.
-         */
-        case 'INCREMENT':
-            return {count: state.count + 1}
-        /**
-         * If the action has a type of 'DECREMENT', then decrement the
-         * count property of the state by 1.
-         */
-        case 'DECREMENT':
-            return {count: state.count - 1}
-        /**
-         * If the action has a type that we do not know about, then just
-         * return the current state without making any changes.
-         */
-        default:
-            return state
+```const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    count: 0
+  },
+  reducers: {
+    incremented: state => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.count += 1
+    },
+    decremented: state => {
+      state.count -= 1
     }
-}
+  }
+})```
 
-// Dispatches an action. It is the only way to trigger a state change.
-store.dispatch({type: 'INCREMENT'}) 
-store.dispatch({type: 'INCREMENT'}) 
-store.dispatch({type: 'DECREMENT'}) 
+export const { incremented, decremented } = counterSlice.actions
 
-// Subscribe to the store. It will be called every time the state changes.
-store.subscribe(() => console.log(store.getState()))
+//configure store by passing reducer and middleware \
 
-//output
-//{count: 1}
-//{count: 2}
-//{count: 1}
+```const store = configureStore({
+  reducer: counterSlice.reducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat()
+})```
+
+// Can still subscribe to the store
+```store.subscribe(() => console.log(store.getState()))```
+
+// Still pass action objects to `dispatch`, but they're created for us
+```store.dispatch(incremented())```
+// {value: 1}
+```store.dispatch(incremented())```
+// {value: 2}
+```store.dispatch(decremented())```
+// {value: 1}
